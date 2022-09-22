@@ -1,11 +1,11 @@
 package com.example.lash.domain.dto
 
-import com.example.lash.domain.User
+import com.example.lash.domain.entity.User
 
-class GetUserDto(user: User) {
+data class GetUserDto(val user: User) {
     val userId = user.userId
     val name = user.name
-    val email = user.userEmail
-    val phoneNo = user.userPhoneNo
+    val email = user.email
+    val hp = user.hp
 }
 
