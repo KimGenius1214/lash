@@ -47,7 +47,6 @@ class User (
     @Column(name = "USER_REGDATE")
     var regDate: ZonedDateTime? = ZonedDateTime.now(),
         )
-// test
 
 //    enum class UserStatus(val status: String){
 //        ACTIVATED("activated"),
