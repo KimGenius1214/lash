@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     },
     btnNo:{
         textAlign: 'center',
-        color: "#ff585f",
+        color: "#fff",
         backgroundColor : "red",
         borderRadius : 10,
         width: 150,
@@ -42,15 +42,15 @@ const styles = StyleSheet.create({
         backgroundColor: "#474fe0",
         borderRadius: 5,
         fontSize: 20,
-        color: 'white',
+        color: '#fff',
         alignSelf: 'center',
         textAlignVertical: 'center'
     }
 })
 
 const color = {
-    추가 : styles.btnOK,
+    추가 : styles.btnOk,
     취소 : styles.btnNo,
-    입력 : styles.btnOK,
+    입력 : styles.btnOk,
     초기화 : styles.btnNo
 }
