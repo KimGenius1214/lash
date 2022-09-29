@@ -49,6 +49,14 @@ dependencies {
     implementation("com.oracle.database.security:oraclepki")
     implementation("com.oracle.database.security:osdt_core")
     implementation("com.oracle.database.security:osdt_cert")
+
+    implementation ("org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE")
+
+    // FilenameUtils
+    implementation("commons-io:commons-io:2.11.0")
+
+    // swagger
+    implementation("io.springfox:springfox-boot-starter:3.0.0")
 }
 
 tasks.withType<KotlinCompile> {
