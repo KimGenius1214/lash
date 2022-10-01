@@ -6,7 +6,8 @@ import Auth from '../util/Auth';
 export default function JoinForm() {
   const [authCheck, setAuthCheck] = useState({
     userId : '',
-    userPw : ''
+    userPw : '',
+    eqPassword : ''
   });
   const [msg, setMsg] = useState('');
   const [isChecked, setIsChecked] = useState(false);
@@ -17,7 +18,6 @@ export default function JoinForm() {
       ...authCheck,
       [key] : value
     })
-    console.log(authCheck)
   };
 
   return (
@@ -43,7 +43,7 @@ export default function JoinForm() {
       <Text>{msg}</Text>
       <View style={styled.btnBox}>
         <PublicBtn title="회원가입" onPress={() => {
-          const result = Auth(authCheck.userId, authCheck.userPw)
+          const result = Auth(authCheck.userId, authCheck.userPw, authCheck.eqPassword)
           if(result != null) setMsg(result)
           else if(result == null) console.log('축하축하')
 
