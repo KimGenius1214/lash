@@ -1,13 +1,13 @@
 import { View, Text } from "react-native"
-
 /**
  * @key "키 명칭" 
  * @value "키 벨류"
  */
 
-export default function Auth(userId, userPw){
+export default function Auth(userId, userPw, eqPassword){
     let authId = userId;
     let authPw = userPw;
+    let authEq = eqPassword;
     
     if(authId == '') return (
         <View>
@@ -17,6 +17,11 @@ export default function Auth(userId, userPw){
     else if(authPw == '') return (
         <View>
             <Text> 비밀번호를 입력하세요. </Text>
+        </View>
+    )
+    else if(authPw != authEq) return(
+        <View>
+            <Text> 비밀번호가 일치하지 않습니다. </Text>
         </View>
     )
     else return null
