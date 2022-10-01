@@ -52,5 +52,7 @@ const color = {
     추가 : styles.btnOk,
     취소 : styles.btnNo,
     입력 : styles.btnOk,
-    초기화 : styles.btnNo
+    초기화 : styles.btnNo,
+    'Sign in' : styles.btnOk,
+    'Sign up' : styles.btnOk
 }
