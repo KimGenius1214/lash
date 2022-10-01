@@ -38,18 +38,18 @@ class UserController(
     @PutMapping("/v1/api/user/{userId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun updateUser(
-        @PathVariable id: Long,
+        @PathVariable userId: Long,
         @RequestBody @Validated updateUserRequest: UpdateUserRequest
     ){
-        return userService.updateUser(id, updateUserRequest)
+        return userService.updateUser(userId, updateUserRequest)
     }
 
     @DeleteMapping("/v1/api/user/{userId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun delete(
-        @PathVariable id: Long
+        @PathVariable userId: Long
     ){
-        return userService.deleteUser(id)
+        return userService.deleteUser(userId)
     }
 
     @GetMapping("/v1/api/users")
