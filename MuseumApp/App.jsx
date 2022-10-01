@@ -1,114 +1,84 @@
 import React from 'react';
-import type {Node} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import PublicBtn from './util/PublicBtn';
+import LoginForm from './view/LoginForm';
+import JoinForm from './view/JoinForm';
+
+import {
+    StyleSheet,
+    Text,
+    View,
+} from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
-
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-  Button
-} from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-import JoinForm from './view/JoinForm';
-
 function WelcomeScreen({navigation}){
     return (
-        <View style ={{flex : 1, alignItems : 'center', justifyContent : 'center', backgroundColor : 'red'}}>
-            <Text>어플 제목</Text>
-            <Button title="로그인" />
-            <Button title="회원가입" onPress={() => navigation.navigate('로동당 가입장부')} />
+        <View style={styles.container}>
+            <View style={styles.titleWrapper}>
+                <Text style={styles.title}>제목이 들어갈 자리</Text>
+            </View>
+            <View style={styles.btnBox}>
+                <PublicBtn title="Sign in" onPress={() => navigation.navigate('LoginForm')}/>
+                <PublicBtn title="Sign up" onPress={() => navigation.navigate('JoinForm')} />
+            </View>
         </View>
     )
 }
+
+function LoginFormScreen({navigation}){
+    return(
+        <View>
+            <LoginForm />
+        </View>
+    )
+}
+
 function JoinFormScreen({navigation}){
-//   const isDarkMode = useColorScheme() === 'dark';
-//
-//   const backgroundStyle = {
-//     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-//   };
     return(
         <View>
             <JoinForm />
         </View>
-
     )
 }
-// const Section = ({children, title}): Node => {
-//   const isDarkMode = useColorScheme() === 'dark';
-//   return (
-//     <View style={styles.sectionContainer}>
-//       <Text
-//         style={[
-//           styles.sectionTitle,
-//           {
-//             color: isDarkMode ? Colors.white : Colors.black,
-//           },
-//         ]}>
-//         {title}
-//       </Text>
-//       <Text
-//         style={[
-//           styles.sectionDescription,
-//           {
-//             color: isDarkMode ? Colors.light : Colors.dark,
-//           },
-//         ]}>
-//         {children}
-//       </Text>
-//     </View>
-//   );
-// };
 
-const App: () => Node = () => {
-//   const isDarkMode = useColorScheme() === 'dark';
-//
-//   const backgroundStyle = {
-//     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-//   };
-
-  return (
+const App = () => {
+    return (
         <NavigationContainer>
-            <Stack.Navigator>
-                <Stack.Screen name="천리마" component={WelcomeScreen} />
-                <Stack.Screen name="로동당 가입장부" component={JoinFormScreen} />
+            <Stack.Navigator initialRouteName='Welcome' screenOptions = {{headerShown: false}}>
+                <Stack.Screen name="Welcome" component={WelcomeScreen} />
+                <Stack.Screen name="LoginForm" component={LoginFormScreen} />
+                <Stack.Screen name="JoinForm" component={JoinFormScreen} />
             </Stack.Navigator>
         </NavigationContainer>
-  );
+    );
 };
 
 const styles = StyleSheet.create({
-//   sectionContainer: {
-//     marginTop: 32,
-//     paddingHorizontal: 24,
-//   },
-//   sectionTitle: {
-//     fontSize: 24,
-//     fontWeight: '600',
-//   },
-//   sectionDescription: {
-//     marginTop: 8,
-//     fontSize: 18,
-//     fontWeight: '400',
-//   },
-//   highlight: {
-//     fontWeight: '700',
-//   },
+    container:{
+        flex : 1, 
+        width: '100%',
+        alignSelf: 'center',
+        padding: '2%',
+        backgroundColor: '#daedff95',
+    },
+    titleWrapper:{
+        flex : 2,
+        justifyContent: 'flex-start'
+    },
+    title:{
+        alignSelf: 'flex-start',
+        marginTop: '10%',
+        color: "#646464",
+        fontSize: 24,
+        fontWeight: 'bold'
+    },
+    btnBox: {
+        flex : 1,
+        marginTop: 10,
+        width: '100%'
+    },
 });
 
 export default App;

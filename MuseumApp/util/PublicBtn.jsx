@@ -46,12 +46,36 @@ const styles = StyleSheet.create({
         color: '#fff',
         alignSelf: 'center',
         textAlignVertical: 'center'
-    }
+    },
+    btnSignin: {
+        textAlign: 'center',
+        backgroundColor : "#023e73",
+        borderRadius : 10,
+        color: "#fff",
+        width: '100%',
+        height: 50,
+        textAlignVertical: 'center',
+        fontSize: 20,
+    },
+    btnSignup: {
+        marginTop : 10,
+        textAlign: 'center',
+        backgroundColor : "#444",
+        borderRadius : 10,
+        color: "#fff",
+        width: '100%',
+        height: 50,
+        textAlignVertical: 'center',
+        fontSize: 20,
+    },
 })
 
 const color = {
     회원가입 : styles.btnOk,
     취소 : styles.btnNo,
     입력 : styles.btnOk,
-    초기화 : styles.btnNo
+    초기화 : styles.btnNo,
+    'Sign in' : styles.btnSignin,
+    'Sign up' : styles.btnSignup,
+    Login : styles.btnSignin
 }

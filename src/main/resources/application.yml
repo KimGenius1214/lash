@@ -2,7 +2,7 @@ spring:
   datasource:
     driver-class-name: oracle.jdbc.OracleDriver
     url:
-      jdbc:oracle:thin:@dboracle_high?TNS_ADMIN=C:/oracle/Wallet_Dboracle
+      jdbc:oracle:thin:@dboracle_high?TNS_ADMIN=C:/development/Wallet_Dboracle
     username: admin
     password: Dboracle9647!
   servlet:
