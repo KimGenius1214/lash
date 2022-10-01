@@ -15,14 +15,15 @@ export default function PublicBtn({ onPress, title }) {
 const styles = StyleSheet.create({
     appButton: {
         fontSize: 10,
+        width: '100%'
     },
     btnOk: {
         textAlign: 'center',
         backgroundColor : "#474fe0",
         borderRadius : 10,
         color: "#fff",
-        width: 150,
-        height: 30,
+        width: "100%",
+        height: 50,
         textAlignVertical: 'center'
     },
     btnNo:{
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
 })
 
 const color = {
-    추가 : styles.btnOk,
+    회원가입 : styles.btnOk,
     취소 : styles.btnNo,
     입력 : styles.btnOk,
     초기화 : styles.btnNo
