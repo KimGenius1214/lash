@@ -45,9 +45,11 @@ export default function JoinForm() {
         <PublicBtn title="회원가입" onPress={() => {
           const result = Auth(authCheck.userId, authCheck.userPw, authCheck.eqPassword)
           if(result != null) setMsg(result)
-          else if(result == null) console.log('축하축하')
-
-          }} />
+          else if(result == null){
+            disabled(true)
+          } 
+          }}
+          disabled={false} />
       </View>
     </View>
   );
@@ -56,7 +58,7 @@ export default function JoinForm() {
 const styled = StyleSheet.create({
   container: {
     flex: 1,
-    width: '85%',
+    width: '95a%',
     alignSelf: 'center',
   },
   inputBox: {
