@@ -4,7 +4,7 @@ import { View, Text } from "react-native"
  * @value "키 벨류"
  */
 
-export default function Auth(userId, userPw, eqPassword){
+export function Auth(userId, userPw, eqPassword){
     let authId = userId;
     let authPw = userPw;
     let authEq = eqPassword;
@@ -34,4 +34,29 @@ export default function Auth(userId, userPw, eqPassword){
     // if(!regExp.test(userPw)) return false
     // else return true
     
+}
+
+export function AuthLogin(userId, userPw){
+    let authId = userId;
+    let authPw = userPw;
+    const regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i
+
+    
+    if(authId == '') return (
+        <View>
+            <Text> 이메일을 입력하세요. </Text>
+        </View>
+    )
+    else if(!regExp.test(userId)) return (
+        <View>
+            <Text> 이메일의 형식이 맞지 않습니다. </Text>
+        </View>
+    )
+    else if(authPw == '') return (
+        <View>
+            <Text> 비밀번호를 입력하세요. </Text>
+        </View>
+    )
+
+    else return null
 }
