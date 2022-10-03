@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View, TextInput, Text, StyleSheet} from 'react-native';
 import PublicBtn from '../util/PublicBtn';
-import { AuthLogin } from "../util/auth";
+import { AuthLogin } from "../util/Auth";
 
 export default function LoginForm() {
 
