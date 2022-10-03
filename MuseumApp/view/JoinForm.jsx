@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View, TextInput, Text, StyleSheet} from 'react-native';
 import PublicBtn from '../util/PublicBtn';
-import Auth from '../util/Auth';
+import {Auth} from '../util/Auth';
 
 export default function JoinForm() {
   const [authCheck, setAuthCheck] = useState({

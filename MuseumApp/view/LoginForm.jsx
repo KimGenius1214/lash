@@ -1,33 +1,49 @@
 import React, {useState} from 'react';
 import {View, TextInput, Text, StyleSheet} from 'react-native';
 import PublicBtn from '../util/PublicBtn';
+import { AuthLogin } from "../util/Auth";
 
 export default function LoginForm() {
-  
-  // const [msg, setMsg] = useState('');
+
+  const [authCheck, setAuthCheck] = useState({
+    userId : '',
+    userPw : '',
+  });
+  const [msg, setMsg] = useState('');
+
+  const authChange = (name, e) => {
+    setAuthCheck({
+      ...authCheck,
+      [name] : e
+    })
+  };
 
   return (
     <View style={styles.container}>
       <View style={styles.TextInputWrapper}>
         <Text style={styles.text}>이메일</Text>
         <TextInput
-          name="email"
+          name="userId"
           style={styles.inputBox}
           placeholder="이메일을 입력하세요"
-          // onChange={e => authChange('userId', e.nativeEvent)}
+          onChangeText={e => authChange("userId", e)}
         />
         <Text style={styles.text}>비밀번호</Text>
         <TextInput
-          name="password"
+          name="userPw"
           style={styles.inputBox}
           placeholder="비밀번호를 입력하세요"
-          // onChange={e => authChange('userPw', e.nativeEvent)}
+          onChangeText={e => authChange("userPw", e)}
         />
-      {/* <Text>{msg}</Text> */}
+      <Text>{msg}</Text>
       </View>
       <View style={styles.btnBox}>
         <PublicBtn title="Login" 
-        // onPress={() => {}} 
+          onPress={() => {
+            const result = AuthLogin(authCheck.userId, authCheck.userPw);
+            if(result != null) setMsg(result)
+            else if(result == null) console.log('로그인 완료')
+          }} 
         />
       </View>
     </View>
