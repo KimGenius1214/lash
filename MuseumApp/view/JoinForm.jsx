@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, TextInput, Text, StyleSheet } from 'react-native';
 import PublicBtn from '../util/PublicBtn';
-import { Auth } from '../util/auth';
+import { Auth } from '../util/Auth';
 
 export default function JoinForm() {
   const [authCheck, setAuthCheck] = useState({
@@ -44,6 +44,7 @@ export default function JoinForm() {
         <PublicBtn title="회원가입" onPress={() => {
           const result = Auth(authCheck.userId, authCheck.userPw, authCheck.eqPassword)
           if(result != null) setMsg(result)
+          else disabled(true)
           }}
           disabled={false} />
       </View>
