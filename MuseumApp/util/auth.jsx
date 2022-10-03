@@ -1,4 +1,4 @@
-import { View, Text } from "react-native"
+import { View, Text, StyleSheet } from "react-native"
 /**
  * @key "키 명칭" 
  * @value "키 벨류"
@@ -44,19 +44,26 @@ export function AuthLogin(userId, userPw){
     
     if(authId == '') return (
         <View>
-            <Text> 이메일을 입력하세요. </Text>
+            <Text style={styles.errorMsg}> 이메일을 입력하세요. </Text>
         </View>
     )
     else if(!regExp.test(userId)) return (
         <View>
-            <Text> 이메일의 형식이 맞지 않습니다. </Text>
+            <Text style={styles.errorMsg}> 이메일의 형식이 맞지 않습니다. </Text>
         </View>
     )
     else if(authPw == '') return (
         <View>
-            <Text> 비밀번호를 입력하세요. </Text>
+            <Text style={styles.errorMsg}> 비밀번호를 입력하세요. </Text>
         </View>
     )
 
     else return null
 }
+
+const styles = StyleSheet.create({
+    errorMsg:{
+        color : '#ff0000',
+        fontSize : 14
+    }
+});

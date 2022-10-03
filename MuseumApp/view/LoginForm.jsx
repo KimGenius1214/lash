@@ -20,13 +20,14 @@ export default function LoginForm() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.TextInputWrapper}>
+      <View style={styles.textInputWrapper}>
         <Text style={styles.text}>이메일</Text>
         <TextInput
           name="userId"
           style={styles.inputBox}
           placeholder="이메일을 입력하세요"
           onChangeText={e => authChange("userId", e)}
+          autoFocus
         />
         <Text style={styles.text}>비밀번호</Text>
         <TextInput
@@ -46,7 +47,7 @@ export default function LoginForm() {
           }} 
         />
       </View>
-    </View>
+      </View>
   );
 }
 
@@ -58,9 +59,11 @@ const styles = StyleSheet.create({
         padding: '2%',
         backgroundColor: '#daedff95',
     },
-    TextInputWrapper:{
-        flex : 1,
-        justifyContent: 'flex-end'
+    textInputWrapper:{
+        flex : 2,
+        justifyContent: 'center',
+        paddingTop:50,
+        marginBottom:50
     },
     text:{
       fontSize: 16,
@@ -80,7 +83,6 @@ const styles = StyleSheet.create({
     },
     btnBox: {
         flex : 1,
-        marginTop: 50,
         width: '100%'
-    },
+    }
 });
