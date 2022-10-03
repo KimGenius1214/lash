@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
-import {View, TextInput, Text, StyleSheet} from 'react-native';
+import React, { useState } from 'react';
+import { View, TextInput, Text, StyleSheet } from 'react-native';
 import PublicBtn from '../util/PublicBtn';
-import Auth from '../util/Auth';
+import { Auth } from '../util/auth';
 
 export default function JoinForm() {
   const [authCheck, setAuthCheck] = useState({
@@ -10,7 +10,6 @@ export default function JoinForm() {
     eqPassword : ''
   });
   const [msg, setMsg] = useState('');
-  const [isChecked, setIsChecked] = useState(false);
 
   const authChange = (key, e) => {
     const value = e.text;
@@ -45,9 +44,6 @@ export default function JoinForm() {
         <PublicBtn title="회원가입" onPress={() => {
           const result = Auth(authCheck.userId, authCheck.userPw, authCheck.eqPassword)
           if(result != null) setMsg(result)
-          else if(result == null){
-            disabled(true)
-          } 
           }}
           disabled={false} />
       </View>
@@ -58,7 +54,8 @@ export default function JoinForm() {
 const styled = StyleSheet.create({
   container: {
     flex: 1,
-    width: '95a%',
+    width: '100%',
+    padding: '2%',
     alignSelf: 'center',
   },
   inputBox: {

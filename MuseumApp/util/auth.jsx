@@ -1,15 +1,15 @@
+
 import { useState } from "react";
-import { View, Text } from "react-native"
+import { View, Text, StyleSheet } from "react-native"
 /**
  * userId, Pw 검증과 비밀번호 일치 여부 관리
  */
-
-export default function Auth(userId, userPw, eqPassword){
-    const [isChecked, setIsChecked] = useState(false);
-
+export function Auth(userId, userPw, eqPassword){
     let authId = userId;
     let authPw = userPw;
     let authEq = eqPassword;
+
+    const [isChecked, setIsChecked] = useState(false);
     
     if(authId == '') return (
         <View>
@@ -27,7 +27,7 @@ export default function Auth(userId, userPw, eqPassword){
         </View>
     )
     const regId = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i
-    if(!regId.test(userId)){} setIsChecked(false)
+    if(!regId.test(userId)) setIsChecked(false)
     
     // 숫자, 특문 각 1회 이상, 영문은 2개 이상 사용하여 8자리 이상 입력
     const regPw = /(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{2,50}).{8,50}$/;
@@ -36,3 +36,34 @@ export default function Auth(userId, userPw, eqPassword){
     if(isChecked) return null;
     
 }
+
+export function AuthLogin(userId, userPw){
+    let authId = userId;
+    let authPw = userPw;
+    const regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i
+
+    if(authId == '') return (
+        <View>
+            <Text style={styles.errorMsg}> 이메일을 입력하세요. </Text>
+        </View>
+    )
+    else if(!regExp.test(userId)) return (
+        <View>
+            <Text style={styles.errorMsg}> 이메일의 형식이 맞지 않습니다. </Text>
+        </View>
+    )
+    else if(authPw == '') return (
+        <View>
+            <Text style={styles.errorMsg}> 비밀번호를 입력하세요. </Text>
+        </View>
+    )
+
+    else return null
+}
+
+const styles = StyleSheet.create({
+    errorMsg:{
+        color : '#ff0000',
+        fontSize : 14
+    }
+});
