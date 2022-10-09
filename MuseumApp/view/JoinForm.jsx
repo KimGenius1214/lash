@@ -32,12 +32,14 @@ export default function JoinForm() {
           name="password"
           style={styled.inputBox}
           placeholder="비밀번호를 입력하세요"
+          secureTextEntry={true}
           onChange={e => authChange('userPw', e.nativeEvent)}
         />
         <TextInput
           name="eqPassword"
           style={styled.inputBox}
           placeholder="비밀번호를 한번 더 입력하세요"
+          secureTextEntry={true}
           onChange={e => authChange('eqPassword', e.nativeEvent)}
         />
         <Text>{msg}</Text>
@@ -46,9 +48,9 @@ export default function JoinForm() {
         <PublicBtn title="회원가입" onPress={() => {
           const result = Auth(authCheck.userId, authCheck.userPw, authCheck.eqPassword)
           if(result != null) setMsg(result)
-          else disabled(true)
+          else if(result == null) navigation.navigate('WelcomeScreen')
           }}
-          disabled={false} />
+        />
       </View>
     </View>
   );

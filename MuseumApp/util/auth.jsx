@@ -25,14 +25,14 @@ export function Auth(userId, userPw, eqPassword){
             <Text> 비밀번호가 일치하지 않습니다. </Text>
         </View>
     )
-    else if(!regId.test(userId)) return(
+    else if(!regId.test(authId)) return(
         <View>
             <Text> 이메일 형식을 확인하세요. </Text>
         </View>
     )
-    else if(!regPw.test(userPw))  return(
+    else if(!regPw.test(authPw))  return(
         <View>
-            <Text> 이메일 형식을 확인하세요. </Text>
+            <Text> 비밀번호 형식을 확인하세요. </Text>
         </View>
     )
     else return null;
@@ -49,7 +49,7 @@ export function AuthLogin(userId, userPw){
             <Text style={styles.errorMsg}> 이메일을 입력하세요. </Text>
         </View>
     )
-    else if(!regExp.test(userId)) return (
+    else if(!regExp.test(authId)) return (
         <View>
             <Text style={styles.errorMsg}> 이메일의 형식이 맞지 않습니다. </Text>
         </View>

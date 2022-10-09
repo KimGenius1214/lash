@@ -33,6 +33,7 @@ export default function LoginForm() {
         <TextInput
           name="userPw"
           style={styles.inputBox}
+          secureTextEntry={true}
           placeholder="비밀번호를 입력하세요"
           onChangeText={e => authChange("userPw", e)}
         />

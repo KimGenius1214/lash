@@ -7,7 +7,6 @@ import JoinForm from './view/JoinForm';
 
 const Stack = createNativeStackNavigator();
 
-
 import {
     StyleSheet,
     Text,
@@ -39,7 +38,7 @@ function LoginFormScreen({navigation}){
 function JoinFormScreen({navigation}){
     return(
         <View>
-            <JoinForm />
+            <JoinForm />       
         </View>
     )
 }
