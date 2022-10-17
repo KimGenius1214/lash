@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
-import {View, TextInput, Text, StyleSheet} from 'react-native';
+import React, { useState } from 'react';
+import { View, TextInput, Text, StyleSheet } from 'react-native';
 import PublicBtn from '../util/PublicBtn';
 import { AuthLogin } from "../util/Auth";
 
-export default function LoginForm() {
+export default function LoginForm({navigation}) {
 
   const [authCheck, setAuthCheck] = useState({
     userId : '',
