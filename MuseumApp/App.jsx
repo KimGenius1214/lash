@@ -12,7 +12,9 @@ const App = () => {
 
 const styled = StyleSheet.create({
     container: {
-        flex : 1
+        flex : 1,
+        width: '90%',
+        alignSelf: 'center',
     }
 })
 

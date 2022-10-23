@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { SafeAreaView, View, TextInput, Text, StyleSheet } from 'react-native';
 import PublicBtn from '../util/PublicBtn';
 import { Auth } from '../util/Auth';
+import Join from '../util/Join';
 
 export default function JoinForm({navigation}) {
   const [authCheck, setAuthCheck] = useState({
@@ -22,12 +23,14 @@ export default function JoinForm({navigation}) {
   return (
     <SafeAreaView style={styled.container}>
       <View style={styled.textInputWrapper}>
+        <Text style={styled.textBox}>아이디(이메일)</Text>
         <TextInput
           name="email"
           style={styled.inputBox}
           placeholder="이메일을 입력하세요"
           onChange={e => authChange('userId', e.nativeEvent)}
         />
+        <Text style={styled.textBox}>비밀번호</Text>
         <TextInput
           name="password"
           style={styled.inputBox}
@@ -35,6 +38,7 @@ export default function JoinForm({navigation}) {
           secureTextEntry={true}
           onChange={e => authChange('userPw', e.nativeEvent)}
         />
+        <Text style={styled.textBox}>비밀번호 확인</Text>
         <TextInput
           name="eqPassword"
           style={styled.inputBox}
@@ -42,6 +46,7 @@ export default function JoinForm({navigation}) {
           secureTextEntry={true}
           onChange={e => authChange('eqPassword', e.nativeEvent)}
         />
+        <Text style={styled.textBox}>휴대폰 번호</Text>
         <View
         style={styled.phoneNumber}>
           <Text 
@@ -64,14 +69,14 @@ export default function JoinForm({navigation}) {
           style={styled.numberBox}
           maxLength={4}
           />
-          <Text>{msg}</Text>
         </View>
+        <Text style={styled.textBox}>{msg}</Text>
       </View>
       <View style={styled.btnBox}>
         <PublicBtn title="회원가입" onPress={() => {
           const result = Auth(authCheck.userId, authCheck.userPw, authCheck.eqPassword)
           if(result != null) setMsg(result)
-          else if(result == null) return navigation.navigate('WelcomeScreen')
+          else if(result == null) Join(authCheck.userId, authCheck.userPw)
           }}
         />
       </View>
@@ -88,16 +93,14 @@ const styled = StyleSheet.create({
   },
   textInputWrapper:{
       flex : 5,
-      paddingTop : 20,
+      paddingTop : 10,
       marginBottom : 50
   },
   inputBox: {
-    borderWidth: 1,
+    borderBottomWidth: 1,
     width: '100%',
-    height: 50,
-    borderRadius: 10,
+    height: 40,
     alignItems: 'center',
-    marginTop: 15,
   },
   btnBox: {
     flex: 1,
@@ -106,16 +109,18 @@ const styled = StyleSheet.create({
   },
   phoneNumber: {
     flexDirection: 'row',
-    marginTop: 15
   },
   numberBox:{
     width: 85,
     height: 40,
     borderBottomWidth: 1,
-    marginTop: 15,
-    textAlign: 'center'
+    textAlign: 'center',
+    textAlignVertical: 'center'
   },
-  center:{
+  center: {
     alignSelf: 'center',
+  },
+  textBox: {
+    marginTop: 10 
   }
 });

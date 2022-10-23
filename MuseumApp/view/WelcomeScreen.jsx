@@ -19,10 +19,7 @@ export default function WelcomeScreen({navigation}){
 const styles = StyleSheet.create({
     container:{
         flex : 1, 
-        width: '100%',
-        alignSelf: 'center',
         padding: '2%',
-        backgroundColor: '#daedff95',
     },
     titleWrapper:{
         flex : 2,
@@ -31,7 +28,6 @@ const styles = StyleSheet.create({
     title:{
         alignSelf: 'flex-start',
         marginTop: '10%',
-        color: "#646464",
         fontSize: 24,
         fontWeight: 'bold'
     },

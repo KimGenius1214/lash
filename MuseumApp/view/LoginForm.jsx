@@ -58,7 +58,6 @@ const styles = StyleSheet.create({
         height : '100%',
         alignSelf: 'center',
         padding: '2%',
-        backgroundColor: '#daedff95',
     },
     textInputWrapper:{
         flex : 2,
@@ -74,7 +73,6 @@ const styles = StyleSheet.create({
     inputBox: {
         width: '100%',
         height: 50,
-        backgroundColor: '#fcfcfc93',
         borderWidth: 1,
         borderRadius: 10,
         alignSelf: 'center',
