@@ -5,12 +5,15 @@ import org.jetbrains.annotations.NotNull
 
 class CreateUserRequest (
     @field:NotNull
+    val idx : String,
+    @field:NotNull
     val userId : String,
     @field:NotNull
     val name: String,
         ){
     fun toUser(): User {
         return User(
+            idx = idx,
             userId = userId,
             name = name,
         )
