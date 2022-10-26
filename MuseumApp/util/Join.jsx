@@ -1,12 +1,9 @@
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid'
 
-export default function Join({navigation, authId, authPw, name, phone}){
+export default function Join({navigation, authCheck}){
 
-    let userId = authId;
-    let userPw = authPw;
-    let userName = name;
-    let userPhone = phone;
+    const { userId, userPw, phone, name } = authCheck;
 
     const uuid = () => {
         const temp = uuidv4().split('-')
@@ -18,13 +15,11 @@ export default function Join({navigation, authId, authPw, name, phone}){
             userIdx : uuid,
             userId : userId,
             userPw : userPw,
-            name : userName,
-            userPhone : userPhone
+            name : name,
+            userPhone : phone
         }).catch(function(err) {
             return err
         }) 
-
-        console.log(result)
         
         if(result == 200) navigation.navigate('WelcomeScreen')
 }

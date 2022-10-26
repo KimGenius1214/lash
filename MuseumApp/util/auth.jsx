@@ -2,39 +2,30 @@ import { View, Text, StyleSheet } from "react-native"
 /**
  * userId, Pw 검증과 비밀번호 일치 여부 관리
  */
-export function Auth(userId, userPw, eqPassword){
-    let authId = userId;
-    let authPw = userPw;
-    let authEq = eqPassword;
+export function Auth({authCheck}){
+
+    const { userId, userPw, eqPassword, name, phone } = authCheck;
+
     const regId = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i
     // 숫자, 특문 각 1회 이상, 영문은 2개 이상 사용하여 8자리 이상 입력
-    const regPw = /(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{2,50}).{8,50}$/;
+    const regPw = /(?=.*\d{1,50})(?=.*[.,~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{2,50}).{8,50}$/;
     
-    if(authId == '') return (
-        <View>
-            <Text> 아이디를 입력하세요. </Text>
-        </View>
-    )
-    else if(authPw == '') return (
-        <View>
-            <Text> 비밀번호를 입력하세요. </Text>
-        </View>
-    )
-    else if(authPw != authEq) return(
-        <View>
-            <Text> 비밀번호가 일치하지 않습니다. </Text>
-        </View>
-    )
-    else if(!regId.test(authId)) return(
-        <View>
-            <Text> 이메일 형식을 확인하세요. </Text>
-        </View>
-    )
-    else if(!regPw.test(authPw))  return(
-        <View>
-            <Text> 비밀번호 형식을 확인하세요. </Text>
-        </View>
-    )
+    //이메일을 입력하세요.
+    if(userId == '') return 0
+    //비밀번호를 입력하세요.
+    else if(userPw == '') return 1
+    //비밀번호가 일치하지 않습니다.
+    else if(userPw != eqPassword) return 2
+    //이메일을 확인하세요.
+    else if(!regId.test(userId)) return 3
+    //비밀번호 형식을 확인하세요.
+    else if(!regPw.test(userPw)) return 4
+    //비밀번호 형식을 확인하세요.
+    else if(!regPw.test(userPw)) return 5
+    //이름을 입력하세요.
+    else if(name == '') return 6
+    //휴대폰 번호를 입력하세요.
+    else if(phone == '') return 7
     else return null;
     
 }
