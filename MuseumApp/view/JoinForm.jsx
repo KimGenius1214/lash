@@ -6,9 +6,11 @@ import Join from '../util/Join';
 
 export default function JoinForm({navigation}) {
   const [authCheck, setAuthCheck] = useState({
+    name: '',
     userId : '',
     userPw : '',
-    eqPassword : ''
+    eqPassword : '',
+    phone: '',
   });
   const [msg, setMsg] = useState('');
 
@@ -23,6 +25,13 @@ export default function JoinForm({navigation}) {
   return (
     <SafeAreaView style={styled.container}>
       <View style={styled.textInputWrapper}>
+      <Text style={styled.textBox}>이름</Text>
+        <TextInput
+          name="name"
+          style={styled.inputBox}
+          placeholder="이름을 입력하세요"
+          onChange={e => authChange('name', e.nativeEvent)}
+        />
         <Text style={styled.textBox}>아이디(이메일)</Text>
         <TextInput
           name="email"
@@ -49,25 +58,10 @@ export default function JoinForm({navigation}) {
         <Text style={styled.textBox}>휴대폰 번호</Text>
         <View
         style={styled.phoneNumber}>
-          <Text 
-          name="firstNumber"
-          style={styled.numberBox}
-          >
-            010
-          </Text>
-          <Text
-            style={styled.center}> - </Text>
           <TextInput 
-          name="middleNumber"
+          name="phone"
           style={styled.numberBox}
-          maxLength={4}
-          />
-          <Text
-            style={styled.center}> - </Text>
-          <TextInput 
-          name="lastNumber"
-          style={styled.numberBox}
-          maxLength={4}
+          placeholder="'-' 구분없이 입력"
           />
         </View>
         <Text style={styled.textBox}>{msg}</Text>
@@ -76,7 +70,7 @@ export default function JoinForm({navigation}) {
         <PublicBtn title="회원가입" onPress={() => {
           const result = Auth(authCheck.userId, authCheck.userPw, authCheck.eqPassword)
           if(result != null) setMsg(result)
-          else if(result == null) Join(authCheck.userId, authCheck.userPw)
+          else if(result == null) Join(authCheck.userId, authCheck.userPw, authCheck.name, authCheck.phone)
           }}
         />
       </View>
@@ -111,16 +105,17 @@ const styled = StyleSheet.create({
     flexDirection: 'row',
   },
   numberBox:{
-    width: 85,
+    width: '60%',
     height: 40,
     borderBottomWidth: 1,
-    textAlign: 'center',
-    textAlignVertical: 'center'
+    alignItems: 'center'
   },
   center: {
     alignSelf: 'center',
   },
   textBox: {
-    marginTop: 10 
+    marginTop: 10,
+    color: 'black',
+    fontWeight: 'bold'
   }
 });

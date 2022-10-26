@@ -1,14 +1,18 @@
 import axios from 'axios';
 
-export default function Join({navigation, authId, authPw}){
+export default function Join({navigation, authId, authPw, name, phone}){
 
     let userId = authId;
     let userPw = authPw;
+    let userName = name;
+    let userPhone = phone;
 
     const result = async () =>
         await axios.post(`/v1/api/user/${userId}`,{
             userId : userId,
-            userPw : userPw
+            userPw : userPw,
+            userName : userName,
+            userPhone : userPhone
         }).catch(function(err) {
             return err
         }) 
