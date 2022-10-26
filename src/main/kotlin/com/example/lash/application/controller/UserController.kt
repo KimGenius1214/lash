@@ -6,59 +6,56 @@ import com.example.lash.application.response.GetUserResponse
 import com.example.lash.application.response.GetUsersResponse
 import com.example.lash.domain.service.UserService
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.domain.PageRequest
 import org.springframework.http.HttpStatus
-import org.springframework.ui.Model
-import org.springframework.ui.set
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/v1/api/user")
+@RequestMapping("/user")
 class UserController(
     @Autowired
     private var userService: UserService
 ) {
 
-    @GetMapping("/{userId}")
+    @GetMapping("/{idx}")
     @ResponseStatus(HttpStatus.OK)
-    fun getUser(@PathVariable id: Long): GetUserResponse{
-        val getUserDto = userService.getUser(id)
+    fun getUser(@PathVariable idx: String): GetUserResponse{
+        val getUserDto = userService.getUser(idx)
         return GetUserResponse(getUserDto)
     }
 
-    @PostMapping("/v1/api/user/{userId}")
+    @PostMapping("/")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun createUser(
         @RequestBody @Validated createUserRequest: CreateUserRequest
     ){
+        println("호출")
         return userService.createUser(createUserRequest)
     }
 
-    @PutMapping("/v1/api/user/{userId}")
+    @PutMapping("/{idx}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun updateUser(
-        @PathVariable id: Long,
+        @PathVariable idx: String,
         @RequestBody @Validated updateUserRequest: UpdateUserRequest
     ){
-        return userService.updateUser(id, updateUserRequest)
+        return userService.updateUser(idx, updateUserRequest)
     }
 
-    @DeleteMapping("/v1/api/user/{userId}")
+//    @DeleteMapping("/delete/{idx}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @RequestMapping("/{idx}", method = [RequestMethod.DELETE])
     fun delete(
-        @PathVariable id: Long
+        @PathVariable idx: String
     ){
-        return userService.deleteUser(id)
+        return userService.deleteUser(idx)
     }
 
-    @GetMapping("/v1/api/users")
+    @GetMapping("/")
     @ResponseStatus(HttpStatus.OK)
     fun getUsers(
-        @RequestParam userUserId: String,
-        @RequestParam page: Int
     ): GetUsersResponse {
-        val users = userService.getUsers(userUserId, PageRequest.of(page, 5))
+        val users = userService.getUsers()
         return GetUsersResponse(users)
     }
 }

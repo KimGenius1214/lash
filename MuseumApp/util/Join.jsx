@@ -11,15 +11,20 @@ export default function Join({navigation, authCheck}){
     }
 
     const result = async () =>
-        await axios.post(`/v1/api/user/${userId}`,{
-            userIdx : uuid,
+        await axios.post(`http://localhost:8080/user/`, JSON.stringify({
+            idx : uuid,
             userId : userId,
-            userPw : userPw,
-            userName : name,
-            userPhone : phone
-        }).catch(function(err) {
+            // userPw : userPw,
+            name : name,
+            // hp : phone
+        }),
+        {
+            headers: {
+                "Content-Type" : `application/json`
+            }
+        })
+        .then((res) => console.log(res))
+        .catch(function(err) {
             return err
-        }) 
-        
-        if(result == 200) navigation.navigate('WelcomeScreen')
+        })
 }

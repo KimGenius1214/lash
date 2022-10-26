@@ -21,27 +21,27 @@ class UserService(
     }
 
     @Transactional(readOnly = true)
-    fun getUser(id: Long): GetUserDto {
-        return userRepository.findById(id).map {
+    fun getUser(idx: String): GetUserDto {
+        return userRepository.findById(idx).map {
             GetUserDto(it)
         }.orElseThrow()
     }
 
-    fun updateUser(id: Long, updateUserRequest: UpdateUserRequest) {
-        userRepository.findById(id).map {
+    fun updateUser(idx: String, updateUserRequest: UpdateUserRequest) {
+        userRepository.findById(idx).map {
             it.userId = updateUserRequest.userId
             it.name = updateUserRequest.name
         }
     }
 
-    fun deleteUser(id: Long) {
-        userRepository.findById(id).map {
+    fun deleteUser(idx: String) {
+        userRepository.findById(idx).map {
             userRepository.delete(it)
         }.orElseThrow()
     }
 
-    fun getUsers(userId: String, pageRequest: Pageable): Page<GetUserDto> {
-        return userRepository.findAllByUserId(userId, pageRequest).map { GetUserDto(it) }
+    fun getUsers(): List<GetUserDto> {
+        return userRepository.findAll().map { GetUserDto(it) }
     }
 
 }

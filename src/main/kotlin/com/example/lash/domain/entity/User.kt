@@ -13,9 +13,8 @@ import javax.persistence.*
 @Table(name = "app_user")
 class User (
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_user")
     @Column(name = "USER_IDX")
-    var idx: Long? = null,
+    var idx: String? = null,
 
     @Column(name = "USER_USERID")
     var userId: String? = null,
