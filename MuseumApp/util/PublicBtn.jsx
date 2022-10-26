@@ -68,6 +68,16 @@ const styles = StyleSheet.create({
         textAlignVertical: 'center',
         fontSize: 20,
     },
+    authCheck: {
+        textAlign: 'center',
+        backgroundColor : "#474fe0",
+        borderRadius : 10,
+        width: '35%',
+        height: 40,
+        textAlignVertical: 'center',
+        color: '#fff',
+        marginLeft: '5%'
+    }
 })
 
 const color = {
@@ -78,5 +88,6 @@ const color = {
     초기화 : styles.btnNo,
     'Sign in' : styles.btnSignin,
     'Sign up' : styles.btnSignup,
-    Login : styles.btnSignin
+    Login : styles.btnSignin,
+    인증하기 : styles.authCheck
 }

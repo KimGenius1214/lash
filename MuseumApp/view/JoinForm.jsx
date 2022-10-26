@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { SafeAreaView, View, TextInput, Text, StyleSheet } from 'react-native';
 import PublicBtn from '../util/PublicBtn';
 import { Auth } from '../util/Auth';
@@ -33,7 +33,7 @@ export default function JoinForm({navigation}) {
           onChange={e => authChange('name', e.nativeEvent)}
         />
         {
-          msg === 6 &&
+          msg === 0 &&
           <Text style={styled.redBox}>이름을 입력하세요.</Text>
         }
         <Text style={styled.textBox}>아이디(이메일)</Text>
@@ -44,11 +44,11 @@ export default function JoinForm({navigation}) {
           onChange={e => authChange('userId', e.nativeEvent)}
         />
         {
-          msg === 0 &&
+          msg === 1 &&
           <Text style={styled.redBox}>이메일을 입력하세요.</Text>
         }
         {
-          msg === 3 &&
+          msg === 2 &&
           <Text style={styled.redBox}>이메일을 확인하세요.</Text>
         }
         <Text style={styled.textBox}>비밀번호</Text>
@@ -60,11 +60,11 @@ export default function JoinForm({navigation}) {
           onChange={e => authChange('userPw', e.nativeEvent)}
         />
         {
-          msg === 1 &&
+          msg === 3 &&
           <Text style={styled.redBox}>비밀번호를 입력하세요.</Text>
         }
         {
-          msg === 4 &&
+          msg === 5 &&
           <Text style={styled.redBox}>비밀번호 형식을 확인하세요.</Text>
         }
         <Text style={styled.textBox}>비밀번호 확인</Text>
@@ -76,23 +76,26 @@ export default function JoinForm({navigation}) {
           onChange={e => authChange('eqPassword', e.nativeEvent)}
         />
         {
-          msg === 2 &&
+          msg === 4 &&
           <Text style={styled.redBox}>비밀번호가 일치하지 않습니다.</Text>
         }
         <Text style={styled.textBox}>휴대폰 번호</Text>
         <View
-        style={styled.phoneNumber}>
+        style={styled.phoneNumber}
+        >
           <TextInput 
           name="phone"
           style={styled.numberBox}
           placeholder="'-' 구분없이 입력"
+          onChange={e => authChange('phone', e.nativeEvent)}
           />
-          
-        {
-          msg === 7 &&
-          <Text style={styled.redBox}>휴대폰 번호를 입력하세요.</Text>
-        }
+          <PublicBtn title='인증하기' onPress={() => console.log('인증하기')}
+          />
         </View>
+          {
+              msg === 6 &&
+              <Text style={styled.redBox}>휴대폰 번호를 입력하세요.</Text>
+          }
       </View>
       <View style={styled.btnBox}>
         <PublicBtn title="회원가입" onPress={() => {
