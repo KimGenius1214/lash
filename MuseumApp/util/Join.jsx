@@ -15,7 +15,7 @@ export default function Join({navigation, authCheck}){
             userIdx : uuid,
             userId : userId,
             userPw : userPw,
-            name : name,
+            userName : name,
             userPhone : phone
         }).catch(function(err) {
             return err

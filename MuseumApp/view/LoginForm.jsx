@@ -60,10 +60,10 @@ const styles = StyleSheet.create({
         padding: '2%',
     },
     textInputWrapper:{
-        flex : 2,
+        flex: 2,
         justifyContent: 'center',
-        paddingTop:50,
-        marginBottom:50
+        paddingTop: 50,
+        marginBottom: 50
     },
     text:{
       fontSize: 16,
