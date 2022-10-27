@@ -4,6 +4,7 @@ import com.example.lash.application.request.CreateUserRequest
 import com.example.lash.application.request.UpdateUserRequest
 import com.example.lash.application.response.GetUserResponse
 import com.example.lash.application.response.GetUsersResponse
+import com.example.lash.domain.dto.GetUserDto
 import com.example.lash.domain.service.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
@@ -19,9 +20,9 @@ class UserController(
 
     @GetMapping("/{idx}")
     @ResponseStatus(HttpStatus.OK)
-    fun getUser(@PathVariable idx: String): GetUserResponse{
+    fun getUser(@PathVariable idx: String?): GetUserDto{
         val getUserDto = userService.getUser(idx)
-        return GetUserResponse(getUserDto)
+        return getUserDto
     }
 
     @PostMapping("/")
@@ -33,18 +34,16 @@ class UserController(
         return userService.createUser(createUserRequest)
     }
 
-    @PutMapping("/{idx}")
+    @PutMapping("/")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun updateUser(
-        @PathVariable idx: String,
         @RequestBody @Validated updateUserRequest: UpdateUserRequest
     ){
-        return userService.updateUser(idx, updateUserRequest)
+        return userService.updateUser(updateUserRequest)
     }
 
-//    @DeleteMapping("/delete/{idx}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @RequestMapping("/{idx}", method = [RequestMethod.DELETE])
+    @DeleteMapping("/{idx}")
+//    @ResponseStatus(HttpStatus.NO_CONTENT)
     fun delete(
         @PathVariable idx: String
     ){
@@ -57,5 +56,10 @@ class UserController(
     ): GetUsersResponse {
         val users = userService.getUsers()
         return GetUsersResponse(users)
+    }
+
+    @DeleteMapping("/all")
+    fun deleteAllUsers(){
+        return userService.deleteAllUser()
     }
 }

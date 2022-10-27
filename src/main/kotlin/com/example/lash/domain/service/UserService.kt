@@ -4,9 +4,6 @@ import com.example.lash.application.request.CreateUserRequest
 import com.example.lash.application.request.UpdateUserRequest
 import com.example.lash.domain.dto.GetUserDto
 import com.example.lash.domain.repository.UserRepository
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.domain.Page
-import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -20,24 +17,29 @@ class UserService(
         userRepository.save(user)
     }
 
-    @Transactional(readOnly = true)
-    fun getUser(idx: String): GetUserDto {
-        return userRepository.findById(idx).map {
-            GetUserDto(it)
-        }.orElseThrow()
+    fun getUser(idx: String?): GetUserDto {
+        return GetUserDto(userRepository.findByIdx(idx))
     }
 
-    fun updateUser(idx: String, updateUserRequest: UpdateUserRequest) {
-        userRepository.findById(idx).map {
-            it.userId = updateUserRequest.userId
-            it.name = updateUserRequest.name
-        }
+    @Transactional
+    fun updateUser(updateUserRequest: UpdateUserRequest) {
+        val user = userRepository.findByIdx(updateUserRequest.idx)
+        user.updateUser(updateUserRequest)
     }
 
+    @Transactional
     fun deleteUser(idx: String) {
-        userRepository.findById(idx).map {
+//        userRepository.findAll().map {
+//            userRepository.delete(it)
+//        }
+    return userRepository.deleteByIdx(idx)
+    }
+
+    @Transactional
+    fun deleteAllUser() {
+        userRepository.findAll().map {
             userRepository.delete(it)
-        }.orElseThrow()
+        }
     }
 
     fun getUsers(): List<GetUserDto> {

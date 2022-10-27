@@ -1,17 +1,24 @@
 package com.example.lash.domain.entity
 
+import com.example.lash.application.request.UpdateUserRequest
+import lombok.AllArgsConstructor
+import lombok.Data
+import lombok.NoArgsConstructor
 import java.time.ZonedDateTime
 import javax.persistence.*
 
+@Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @SequenceGenerator(
-    name="seq_user",
+    name = "seq_user",
     sequenceName = "seq_user",
     initialValue = 1,
     allocationSize = 1
 )
 @Table(name = "app_user")
-class User (
+class User(
     @Id
     @Column(name = "USER_IDX")
     var idx: String? = null,
@@ -45,8 +52,14 @@ class User (
 
     @Column(name = "USER_REGDATE")
     var regDate: ZonedDateTime? = ZonedDateTime.now(),
-        )
+) {
+    fun updateUser(updateUserRequest: UpdateUserRequest) {
+        userId = updateUserRequest.userId
+        name = updateUserRequest.name
+    }
 
+
+}
 //    enum class UserStatus(val status: String){
 //        ACTIVATED("activated"),
 //        DEACTIVATED("deactivated"),
