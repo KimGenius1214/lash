@@ -21,6 +21,10 @@ class UserService(
         return GetUserDto(userRepository.findByIdx(idx))
     }
 
+    fun getUserLogin(userId: String?): GetUserDto {
+        return GetUserDto(userRepository.findByUserId(userId))
+    }
+
     @Transactional
     fun updateUser(updateUserRequest: UpdateUserRequest) {
         val user = userRepository.findByIdx(updateUserRequest.idx)

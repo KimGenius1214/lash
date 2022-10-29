@@ -1,13 +1,14 @@
 package com.example.lash.application.controller
 
 import com.example.lash.application.request.CreateUserRequest
+import com.example.lash.application.request.LoginUserRequest
 import com.example.lash.application.request.UpdateUserRequest
-import com.example.lash.application.response.GetUserResponse
 import com.example.lash.application.response.GetUsersResponse
 import com.example.lash.domain.dto.GetUserDto
 import com.example.lash.domain.service.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
+import org.springframework.util.StringUtils
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 
@@ -62,4 +63,23 @@ class UserController(
     fun deleteAllUsers(){
         return userService.deleteAllUser()
     }
+
+    @PostMapping("/login")
+    @ResponseStatus(HttpStatus.OK)
+    fun loginAccess(
+        @RequestBody @Validated loginUserRequest: LoginUserRequest
+    ): String? {
+        val userId : String? = loginUserRequest.userId
+        val userPw : String? = loginUserRequest.userPw
+
+        val getUserDto = userService.getUserLogin(userId)
+        if(!StringUtils.isEmpty(userPw)){
+            if(userPw.equals(getUserDto.userPw)){
+                return "OK"
+            }
+        }
+        return "NO"
+    }
+
 }
+

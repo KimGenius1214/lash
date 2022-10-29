@@ -101,7 +101,7 @@ export default function JoinForm({navigation}) {
         <PublicBtn title="회원가입" onPress={() => {
           const result = Auth({authCheck})
           if(result != null) setMsg(result)
-          else if(result == null) Join({authCheck})
+          else if(result == null) Join(authCheck)
           }}
         />
       </View>

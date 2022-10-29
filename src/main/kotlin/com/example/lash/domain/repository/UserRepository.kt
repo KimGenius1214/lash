@@ -13,4 +13,6 @@ interface UserRepository : JpaRepository<User, String> {
     @Nullable
     fun findByIdx(idx: String?): User
     fun deleteByIdx(idx: String)
+    @Nullable
+    fun findByUserId(userId: String?): User
 }

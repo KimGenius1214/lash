@@ -19,7 +19,7 @@ export function Auth({authCheck}){
     //비밀번호를 입력하세요.
     else if(userPw == '') return 3
     //비밀번호가 일치하지 않습니다.
-    else if(userPw != eqPassword) return 4
+    // else if(userPw != eqPassword) return 4
     //비밀번호 형식을 확인하세요.
     else if(!regPw.test(userPw)) return 5
     //휴대폰 번호를 입력하세요.

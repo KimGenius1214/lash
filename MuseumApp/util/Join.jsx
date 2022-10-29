@@ -1,30 +1,25 @@
 import axios from 'axios';
-import { v4 as uuidv4 } from 'uuid'
 
-export default function Join({navigation, authCheck}){
+export default async function Join(authCheck){
 
-    const { userId, userPw, phone, name } = authCheck;
+    const { userId, name } = authCheck;
 
-    const uuid = () => {
-        const temp = uuidv4().split('-')
-        return temp[0] + temp[3] + temp[2] + temp[4] + temp[1];
+    const data = {
+        idx : "1112",
+        userId : userId,
+        name : name
     }
 
-    const result = async () =>
-        await axios.post(`http://localhost:8080/user/`, JSON.stringify({
-            idx : uuid,
-            userId : userId,
-            // userPw : userPw,
-            name : name,
-            // hp : phone
-        }),
-        {
-            headers: {
-                "Content-Type" : `application/json`
+    try {
+        await axios.post('http://192.168.35.200:8080/user/', data ,{    //본인 IP 주소 넣으십쇼
+            header: {
+                'Content-Type':'application/json'
             }
         })
-        .then((res) => console.log(res))
-        .catch(function(err) {
-            return err
-        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    } catch(error){
+        console.log(error.response);
+    }
 }
