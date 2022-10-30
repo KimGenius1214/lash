@@ -6,7 +6,7 @@ export default async function Login(authCheck){
     const data = {userId : userId, userPw : userPw}
 
     try {
-        const res = await axios.post('http://192.168.35.200:8080/user/login', data,{ 
+        const res = await axios.post('http://211.227.86.116:8080/user/login', data,{ 
             header: {
                 'Content-Type':'application/json'
             }
