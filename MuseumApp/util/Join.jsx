@@ -1,24 +1,34 @@
 import axios from 'axios';
+import { v4 } from 'uuid';
 
 export default async function Join(authCheck){
 
-    const { userId, name } = authCheck;
+    const { userId, userPw, name, phone } = authCheck;
+
+    const uuid = v4();
+    const temp = uuid.split('-');
+    const userIdx = temp[0] + temp[3] + temp[2] + temp[4] + temp[1];    
 
     const data = {
-        idx : "1112",
+        idx : userIdx,
         userId : userId,
-        name : name
+        userPw : userPw,
+        name : name,
+        hp : phone
     }
 
     try {
-        await axios.post('http://192.168.35.200:8080/user/', data ,{    //본인 IP 주소 넣으십쇼
+        const isJoin = await axios.post('http://211.227.86.116:8080/user/', data ,{    //본인 IP 주소 넣으십쇼
             header: {
                 'Content-Type':'application/json'
             }
         })
-        .catch(function (error) {
+        .catch(function (error) {!
             console.log(error);
         });
+
+        if(isJoin.status === 204) return 204;
+        else return '가입 실패';
     } catch(error){
         console.log(error.response);
     }

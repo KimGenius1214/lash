@@ -31,7 +31,6 @@ class UserController(
     fun createUser(
         @RequestBody @Validated createUserRequest: CreateUserRequest
     ){
-        println("호출")
         return userService.createUser(createUserRequest)
     }
 

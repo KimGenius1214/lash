@@ -9,13 +9,20 @@ class CreateUserRequest (
     @field:NotNull
     val userId : String,
     @field:NotNull
+    val userPw : String,
+    @field:NotNull
     val name: String,
+    @field:NotNull
+    val hp: String,
         ){
     fun toUser(): User {
         return User(
             idx = idx,
             userId = userId,
+            userPw = userPw,
             name = name,
+            hp = hp
+
         )
     }
 }

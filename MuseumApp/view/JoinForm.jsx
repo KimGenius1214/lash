@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SafeAreaView, View, TextInput, Text, StyleSheet } from 'react-native';
 import PublicBtn from '../util/PublicBtn';
 import { Auth } from '../util/Auth';
@@ -13,6 +13,7 @@ export default function JoinForm({navigation}) {
     phone: '',
   });
   const [msg, setMsg] = useState('');
+  const [isJoin, setIsJoin] = useState(0);
 
   const authChange = (key, e) => {
     const value = e.text;
@@ -21,6 +22,15 @@ export default function JoinForm({navigation}) {
       [key] : value
     })
   };
+
+  useEffect(() => {
+    console.log(isJoin)
+    if(isJoin === 204) {
+      navigation.navigate('WelcomeScreen')
+    }else{
+      console.log('이동 실패')
+    }
+  },[isJoin])
 
   return (
     <SafeAreaView style={styled.container}>
@@ -101,7 +111,7 @@ export default function JoinForm({navigation}) {
         <PublicBtn title="회원가입" onPress={() => {
           const result = Auth({authCheck})
           if(result != null) setMsg(result)
-          else if(result == null) Join(authCheck)
+          else if(result == null) Join(authCheck).then(res => setIsJoin(res))
           }}
         />
       </View>
