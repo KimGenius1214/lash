@@ -18,5 +18,4 @@ const styled = StyleSheet.create({
     }
 })
 
-
 export default App;

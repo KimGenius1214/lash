@@ -26,9 +26,9 @@ export default function JoinForm({navigation}) {
   useEffect(() => {
     console.log(isJoin)
     if(isJoin === 204) {
-      navigation.navigate('WelcomeScreen')
+      navigation.navigate('JoinComp')
     }else{
-      console.log('이동 실패')
+      console.log(isJoin)
     }
   },[isJoin])
 

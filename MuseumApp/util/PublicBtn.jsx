@@ -84,7 +84,7 @@ const color = {
     회원가입 : styles.btnOk,
     취소 : styles.btnNo,
     입력 : styles.btnOk,
-    초기화 : styles.btnNo,
+    확인 : styles.btnOk,
     초기화 : styles.btnNo,
     'Sign in' : styles.btnSignin,
     'Sign up' : styles.btnSignup,
