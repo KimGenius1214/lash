@@ -48,14 +48,15 @@ const styles = StyleSheet.create({
         textAlignVertical: 'center'
     },
     btnSignin: {
+        color: "#fff",
+        width: '20%',
+        height: 30,
+        fontSize: 13,
         textAlign: 'center',
+        textAlignVertical: 'center',
         backgroundColor : "#023e73",
         borderRadius : 10,
-        color: "#fff",
-        width: '100%',
-        height: 50,
-        textAlignVertical: 'center',
-        fontSize: 20,
+        alignSelf: 'center',
     },
     btnSignup: {
         marginTop : 10,
@@ -87,6 +88,7 @@ const color = {
     확인 : styles.btnOk,
     초기화 : styles.btnNo,
     'Sign in' : styles.btnSignin,
+    로그인 : styles.btnSignin,
     'Sign up' : styles.btnSignup,
     Login : styles.btnSignin,
     인증하기 : styles.authCheck

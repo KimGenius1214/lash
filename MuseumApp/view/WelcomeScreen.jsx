@@ -1,19 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import LoadingPageMain from '../lodingPage/LoadingPageMain';
 import PublicBtn from '../util/PublicBtn';
 
 export default function WelcomeScreen({navigation}){
-    const [loading, setLoading] = useState(false);
-
-    const loadPage = async() => {
-        setTimeout(() => {setLoading(true)}, 5000)
-    }
-
-    loadPage();
-
-    if(!loading) return <LoadingPageMain />
-    else {
     return (
             <View style={styles.container}>
                 <View style={styles.titleWrapper}>
@@ -25,7 +14,6 @@ export default function WelcomeScreen({navigation}){
                 </View>
             </View>
         )
-    }
 }
 
 const styles = StyleSheet.create({

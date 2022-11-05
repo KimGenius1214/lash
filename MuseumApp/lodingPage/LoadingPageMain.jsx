@@ -6,7 +6,7 @@ export default function LoadingPageMain(){
         <View style={styled.container}>
             <View style={styled.bodyContainer}>
                 <Image source={require('../image/inging.gif')} style={styled.imgStyle} />
-                <Text>The Museum Project</Text>
+                <Text style={styled.textStyle}>The Museum Project</Text>
             </View>
         </View>
     )
@@ -24,5 +24,10 @@ const styled = StyleSheet.create({
     imgStyle:{
         width: 300,
         height: 300
+    },
+    textStyle:{
+        textAlign:'center',
+        fontWeight: 'bold',
+        fontSize: 25
     }
 })
