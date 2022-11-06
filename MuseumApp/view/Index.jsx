@@ -18,60 +18,56 @@ export function OkToken() {
 export function NotToken({navigation}) {
     return(
         <View style={styled.topBoard}>
-            <Text style={{textAlignVertical: 'center'}}>회원 가입을 하시겠어요?</Text>
-            <PublicBtn title="로그인" onPress={() => navigation.navigate('JoinForm')}/>
+            <Text style={{textAlignVertical: 'center'}} onPress={() => navigation.navigate('JoinForm')}>회원 가입을 하시겠어요?</Text>
+            <View style={{width: '20%'}}>
+                <PublicBtn title="로그인" onPress={() => navigation.navigate('LoginForm')} />
+            </View>
         </View>
     )
 }
 
 export default function Index({navigation}){
-    const [loading, setLoading] = useState(false);
     const [inToken, setToken] = useState(false);
 
-    (async() => {
-        setTimeout(() => {setLoading(true)}, 3000)
-    })()
-
-    if(!loading) return <LoadingPageMain />
-    else{
-        return(
-            <ScrollView style={styled.container}>
-                { inToken === true ? <OkToken /> : <NotToken navigation={navigation} /> }
-                <View style={styled.searchBoard}>
-                    <Icon name="search1" size={25} color="black" style={{alignSelf:'center'}} />
-                    <TextInput placeholder='행사정보/커뮤니티/매장/혜택·이벤트/커머스/온라인 전시관' style={styled.placeHolderStyle} />
+    return(
+        <ScrollView style={styled.container}>
+            { inToken === true ? <OkToken /> : <NotToken navigation={navigation} /> }
+            <View style={styled.searchBoard}>
+                <Icon name="search1" size={25} color="black" style={{alignSelf:'center'}} />
+                <TextInput placeholder='행사정보/커뮤니티/매장/혜택·이벤트/커머스/온라인 전시관' style={styled.placeHolderStyle} />
+            </View>
+            <View style={styled.filterBoard}>
+                <Text>라승현님께 추천해요 !</Text>
+                <View style={styled.plusBoard}>
+                    <Text>필터 설정</Text>
+                    <Icon name="plussquareo" size={25} color="black" style={{alignSelf:'center', marginLeft:5}} />
                 </View>
-                <View style={styled.filterBoard}>
-                    <Text>라승현님께 추천해요 !</Text>
-                    <View style={styled.plusBoard}>
-                        <Text>필터 설정</Text>
-                        <Icon name="plussquareo" size={25} color="black" style={{alignSelf:'center', marginLeft:5}} />
+            </View>
+            <View style={styled.mainBoard}>
+            </View>
+            <View style={styled.subBoard}>
+                <Icon name="leftcircleo" size={25} color="black" style={{alignSelf:'center'}} />
+                <View style={styled.subImgBoard}></View>
+                <View style={styled.subImgBoard}></View>
+                <View style={styled.subImgBoard}></View>
+                <Icon name="rightcircleo" size={25} color="black" style={{alignSelf:'center'}} />
+            </View>
+            <View style={styled.hotMatch}>
+                <View style={styled.hotMatchBoard}>
+                    <Text style={{textAlign:'center'}}>커뮤니티 탑 3 게시물</Text>
+                    <View style={styled.viewImg}>
                     </View>
                 </View>
-                <View style={styled.mainBoard}>
-                </View>
-                <View style={styled.subBoard}>
-                    <Icon name="leftcircleo" size={25} color="black" style={{alignSelf:'center'}} />
-                    <View style={styled.subImgBoard}></View>
-                    <View style={styled.subImgBoard}></View>
-                    <View style={styled.subImgBoard}></View>
-                    <Icon name="rightcircleo" size={25} color="black" style={{alignSelf:'center'}} />
-                </View>
-                <View style={styled.hotMatch}>
-                    <View style={styled.hotMatchBoard}>
-                        <Text style={{textAlign:'center'}}>커뮤니티 탑 3 게시물</Text>
-                        <View style={styled.viewImg}>
-                        </View>
-                    </View>
-                    <View style={styled.hotMatchBoard}>
-                        <Text style={{textAlign:'center'}}>매칭 진행</Text>
-                        <View style={styled.viewImg}>
-                        </View>
+                <View style={styled.hotMatchBoard}>
+                    <Text style={{textAlign:'center'}}>
+                    매칭 진행
+                    </Text>              
+                    <View style={styled.viewImg}>
                     </View>
                 </View>
-            </ScrollView>
-        )
-    }
+            </View>
+        </ScrollView>
+    )
 }
 
 const styled = StyleSheet.create({
@@ -83,7 +79,8 @@ const styled = StyleSheet.create({
     topBoard:{
         flexDirection: 'row',
         justifyContent: 'space-between',
-        padding: '5%'
+        paddingHorizontal: '5%',
+        paddingVertical: '2%'
     },
     searchBoard: {
         flexDirection: 'row',
@@ -146,6 +143,5 @@ const styled = StyleSheet.create({
     btnBox: {
         flex : 1,
         marginTop: 10,
-        width: '100%'
     },
 })

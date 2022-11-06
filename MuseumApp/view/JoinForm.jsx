@@ -24,11 +24,8 @@ export default function JoinForm({navigation}) {
   };
 
   useEffect(() => {
-    console.log(isJoin)
     if(isJoin === 204) {
       navigation.navigate('JoinComp')
-    }else{
-      console.log(isJoin)
     }
   },[isJoin])
 

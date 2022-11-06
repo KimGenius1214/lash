@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
-import Index from './navigation/Index'
+import LoadingPageMain from './lodingPage/LoadingPageMain';
+import Index from './navigation/Index';
 
 const App = () => {
-    return (
-        <SafeAreaView style={styled.container}>
-            <Index />
-        </SafeAreaView>
-    );
+    const [loading, setLoading] = useState(false);
+
+    (async() => {
+        setTimeout(() => {setLoading(true)}, 3000)
+    })()
+
+    if(!loading) return <LoadingPageMain />
+    else{
+        return (
+            <SafeAreaView style={styled.container}>
+                <Index />
+            </SafeAreaView>
+        );
+    }
 };
 
 const styled = StyleSheet.create({

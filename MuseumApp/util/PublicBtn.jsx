@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     },
     btnSignin: {
         color: "#fff",
-        width: '20%',
+        width: '100%',
         height: 30,
         fontSize: 13,
         textAlign: 'center',
