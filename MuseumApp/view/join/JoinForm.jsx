@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { SafeAreaView, View, TextInput, Text, StyleSheet } from 'react-native';
-import PublicBtn from '../util/PublicBtn';
-import { Auth } from '../util/Auth';
+import PublicBtn from '../../util/PublicBtn';
+import { Auth } from '../../util/Auth';
 import Join from '../util/Join';
 
 export default function JoinForm({navigation}) {

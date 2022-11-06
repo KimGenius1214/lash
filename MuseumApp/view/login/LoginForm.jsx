@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { View, TextInput, Text, StyleSheet } from 'react-native';
-import PublicBtn from '../util/PublicBtn';
-import { AuthLogin } from "../util/Auth";
-import Login from '../util/Login';
+import PublicBtn from '../../util/PublicBtn';
+import { AuthLogin } from "../../util/Auth";
+import Login from '../../util/Login';
 
 export default function LoginForm({navigation}) {
 

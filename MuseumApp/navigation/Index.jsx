@@ -6,9 +6,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 // screen
 import WelcomeScreen from '../view/WelcomeScreen'
-import LoginForm from '../view/LoginForm';
-import JoinForm from '../view/JoinForm';
-import JoinComp from '../view/JoinComp';
+import LoginForm from '../view/login/LoginForm';
+import JoinForm from '../view/join/JoinForm';
+import JoinComp from '../view/join/JoinComp';
 import Main from '../view/Index';
 
 export default function Index(){

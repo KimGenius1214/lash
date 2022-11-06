@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, Image } from "react-native";
-import PublicBtn from "../util/PublicBtn";
+import PublicBtn from "../../util/PublicBtn";
 
 export default function JoinComp({navigation}){
 
