@@ -6,7 +6,7 @@ export default function JoinComp({navigation}){
     return(
         <View style={styled.container}>
             <View style={styled.complet}>
-                <Image style={styled.ellipse} source={require('../image/Firecracker.png')} />
+                <Image style={styled.ellipse} source={require('../../image/Firecracker.png')} />
                 <Text style={styled.textArea}>Museum Famliy가 되신 것을 환영해요 !</Text>
             </View>
             <View style={styled.btnView}>

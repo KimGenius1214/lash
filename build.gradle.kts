@@ -50,12 +50,16 @@ dependencies {
     implementation("com.oracle.database.security:osdt_core")
     implementation("com.oracle.database.security:osdt_cert")
 
-
     // FilenameUtils
     implementation("commons-io:commons-io:2.11.0")
 
     // swagger
     implementation("io.springfox:springfox-boot-starter:3.0.0")
+
+    // JWT
+    implementation("io.jsonwebtoken:jjwt-api:0.11.2")
+    runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.2")
+    runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.2")
 }
 
 tasks.withType<KotlinCompile> {

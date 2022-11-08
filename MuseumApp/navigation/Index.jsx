@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -41,19 +42,20 @@ function BottomNavi() {
     const Tab = createBottomTabNavigator();
     return(
             <Tab.Navigator
-            initialRouteName={Main}
-            screenOptions = {({ navigation }) => ({
-                tabBarIcon: ({focused, size, color}) => {
-                    let iconName;
-                    if(navigation.name === 'home'){
-                        iconName = focused? 'home' : 'home-outline';
-                    }else if(navigation.name === 'profile'){
-                        iconName = focused? 'person-circle-sharp' : 'person-circle-outlice';
-                    }
-                    return <Icon name={iconName} size={size} color={color} />
-                },
-                headerShown : false
-            })}
+                initialRouteName = {Main}
+                screenOptions = {({ navigation }) => ({
+                    tabBarIcon: ({focused, size, color}) => {
+                        let iconName;
+                        if(navigation.name === 'home'){
+                            iconName = focused? 'home' : 'home-outline';
+                        }else if(navigation.name === 'profile'){
+                            iconName = focused? 'person-circle-sharp' : 'person-circle-outlice';
+                        }
+                        return <Icon name={iconName} size={size} color={color} />
+                    },
+                    headerShown : false,
+                    tabBarStyle: styled.tabBarStyle
+                })}
             >
                 <Tab.Screen
                 name="home"
@@ -72,3 +74,16 @@ function BottomNavi() {
             </Tab.Navigator>
     )
 }
+
+const styled = StyleSheet.create({
+    tabBarStyle : {
+        position: 'absolute',
+        backgroundColor: '#ffffff',
+        borderTopWidth: 0,
+        bottom: 10,
+        right: 10,
+        left: 10,
+        height: 60,
+        borderRadius: 10
+    }
+})
