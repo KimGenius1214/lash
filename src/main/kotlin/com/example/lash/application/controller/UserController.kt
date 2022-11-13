@@ -67,18 +67,17 @@ class UserController(
     @ResponseStatus(HttpStatus.OK)
     fun loginAccess(
         @RequestBody @Validated loginUserRequest: LoginUserRequest
-    ): String? {
-        val userId : String? = loginUserRequest.userId
-        val userPw : String? = loginUserRequest.userPw
+    ): GetUserDto {
+        val userId: String? = loginUserRequest.userId
+        val userPw: String? = loginUserRequest.userPw
 
         val getUserDto = userService.getUserLogin(userId)
-        if(!StringUtils.isEmpty(userPw)){
-            if(userPw.equals(getUserDto.userPw)){
-                return "OK"
+        if (!StringUtils.isEmpty(userPw)) {
+            if (userPw.equals(getUserDto.userPw)) {
+                return getUserDto
             }
         }
-        return "NO"
+        return getUserDto
     }
-
 }
 

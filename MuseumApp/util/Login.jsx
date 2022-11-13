@@ -3,10 +3,10 @@ import axios from 'axios';
 export default async function Login(authCheck){
     const { userId, userPw } = authCheck;
 
-    const data = {userId : userId, userPw : userPw}
+    const data = { userId : userId, userPw : userPw }
 
     try {
-        const res = await axios.post('http://211.227.86.116:8080/user/login', data,{ 
+        const res = await axios.post('http://61.72.60.239:8080/user/login', data,{ 
             header: {
                 'Content-Type':'application/json'
             }
@@ -14,8 +14,8 @@ export default async function Login(authCheck){
             console.log(error);
         });
 
-        if(res.data == 'OK'){
-            return '로그인 성공'
+        if(res.status === 200){
+            return res.data
         }else{
             return '로그인 실패'
         }

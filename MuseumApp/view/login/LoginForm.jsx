@@ -3,6 +3,9 @@ import { View, TextInput, Text, StyleSheet } from 'react-native';
 import PublicBtn from '../../util/PublicBtn';
 import { AuthLogin } from "../../util/Auth";
 import Login from '../../util/Login';
+import { createContext } from 'react'
+
+export const LoginTest = createContext('');
 
 export default function LoginForm({navigation}) {
 

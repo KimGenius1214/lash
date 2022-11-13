@@ -80,10 +80,9 @@ const styled = StyleSheet.create({
         position: 'absolute',
         backgroundColor: '#ffffff',
         borderTopWidth: 0,
-        bottom: 10,
-        right: 10,
-        left: 10,
         height: 60,
-        borderRadius: 10
+        borderTopStartRadius: 20,
+        borderTopEndRadius: 20,
+        paddingBottom: 10
     }
 })

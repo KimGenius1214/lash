@@ -1,12 +1,11 @@
-import { Text, View, ScrollView, StyleSheet, TextInput } from 'react-native';
-import { useState } from 'react';
-import LoadingPageMain from '../lodingPage/LoadingPageMain';
+import { Text, View, ScrollView, StyleSheet, TextInput, Image } from 'react-native';
+import { useState, useContext } from 'react';
 import Icon from 'react-native-vector-icons/AntDesign';
 import PublicBtn from '../util/PublicBtn';
 import axios from 'axios';
+import { LoginTest } from '../view/login/LoginForm'
 
-export function OkToken() {
-    const [name, setName] = useState('라승현');
+export function OkToken({name}) {
     return(
         <View style={styled.topBoard}>
             <Text>{name}님 반가워요</Text>
@@ -27,11 +26,13 @@ export function NotToken({navigation}) {
 }
 
 export default function Index({navigation}){
-    const [inToken, setToken] = useState(false);
+    const login = useContext(LoginTest);
+    // const [inToken, setToken] = useState(false);
+    console.log(login)
 
     return(
         <ScrollView style={styled.container}>
-            { inToken === true ? <OkToken /> : <NotToken navigation={navigation} /> }
+            { login === '' ? <NotToken navigation={navigation} /> : <OkToken name={login}/> }
             <View style={styled.searchBoard}>
                 <Icon name="search1" size={25} color="black" style={{alignSelf:'center'}} />
                 <TextInput placeholder='행사정보/커뮤니티/매장/혜택·이벤트/커머스/온라인 전시관' style={styled.placeHolderStyle} />
@@ -44,6 +45,7 @@ export default function Index({navigation}){
                 </View>
             </View>
             <View style={styled.mainBoard}>
+                <Image source={require('../image/poster1.png')} style={{width: '100%', height: '100%', resizeMode: 'contain'}}/>
             </View>
             <View style={styled.subBoard}>
                 <Icon name="leftcircleo" size={25} color="black" style={{alignSelf:'center'}} />
