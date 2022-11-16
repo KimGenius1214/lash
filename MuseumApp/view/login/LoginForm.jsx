@@ -3,12 +3,9 @@ import { View, TextInput, Text, StyleSheet } from 'react-native';
 import PublicBtn from '../../util/PublicBtn';
 import { AuthLogin } from "../../util/Auth";
 import Login from '../../util/Login';
-import { createContext } from 'react'
 
-export const LoginTest = createContext('');
 
 export default function LoginForm({navigation}) {
-
   const [authCheck, setAuthCheck] = useState({
     userId : '',
     userPw : '',
@@ -50,7 +47,7 @@ export default function LoginForm({navigation}) {
             if(result != null) setMsg(result)
             else if(result == null) {
               // 확인용, 추후 로그인 상태 페이지 작성 예정
-              Login(authCheck).then(res => console.log(res))
+              Login(authCheck).then(res => console.log(res));              
             }
           }} 
         />

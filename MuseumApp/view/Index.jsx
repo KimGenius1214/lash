@@ -3,7 +3,6 @@ import { useState, useContext } from 'react';
 import Icon from 'react-native-vector-icons/AntDesign';
 import PublicBtn from '../util/PublicBtn';
 import axios from 'axios';
-import { LoginTest } from '../view/login/LoginForm'
 
 export function OkToken({name}) {
     return(
@@ -26,13 +25,11 @@ export function NotToken({navigation}) {
 }
 
 export default function Index({navigation}){
-    const login = useContext(LoginTest);
-    // const [inToken, setToken] = useState(false);
-    console.log(login)
+    const [inToken, setToken] = useState(false);
 
     return(
         <ScrollView style={styled.container}>
-            { login === '' ? <NotToken navigation={navigation} /> : <OkToken name={login}/> }
+            { inToken === false ? <NotToken navigation={navigation} /> : <OkToken name={inToken}/> }
             <View style={styled.searchBoard}>
                 <Icon name="search1" size={25} color="black" style={{alignSelf:'center'}} />
                 <TextInput placeholder='행사정보/커뮤니티/매장/혜택·이벤트/커머스/온라인 전시관' style={styled.placeHolderStyle} />

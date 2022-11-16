@@ -1,7 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import LoadingPageMain from './lodingPage/LoadingPageMain';
 import Index from './navigation/Index';
+
 
 const App = () => {
     const [loading, setLoading] = useState(false);
