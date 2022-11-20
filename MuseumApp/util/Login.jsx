@@ -1,5 +1,4 @@
 import axios from 'axios';
-import LoginAuthContext from '../component/ContextAPI';
 
 export default async function Login(authCheck){
     const { userId, userPw } = authCheck;
@@ -7,7 +6,7 @@ export default async function Login(authCheck){
     const data = { userId: userId, userPw: userPw }
 
     try {
-        const res = await axios.post('http://221.155.110.178:8080/user/login', data,{ 
+        const res = await axios.post('http://222.120.225.118:8080/user/login', data,{ 
             header: {
                 'Content-Type':'application/json'
             }

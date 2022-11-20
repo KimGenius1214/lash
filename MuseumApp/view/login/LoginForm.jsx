@@ -3,9 +3,11 @@ import { View, TextInput, Text, StyleSheet } from 'react-native';
 import PublicBtn from '../../util/PublicBtn';
 import { AuthLogin } from "../../util/Auth";
 import Login from '../../util/Login';
-
+import { useRecoilState } from 'recoil';
+import { userState } from '../../component';
 
 export default function LoginForm({navigation}) {
+  const [user, setUser] = useRecoilState(userState)
   const [authCheck, setAuthCheck] = useState({
     userId : '',
     userPw : '',
@@ -46,8 +48,9 @@ export default function LoginForm({navigation}) {
             const result = AuthLogin(authCheck.userId, authCheck.userPw);
             if(result != null) setMsg(result)
             else if(result == null) {
-              // 확인용, 추후 로그인 상태 페이지 작성 예정
-              Login(authCheck).then(res => console.log(res));              
+              Login(authCheck).then(res => setUser(res));
+              if(user.userId === authCheck.userId) navigation.navigate('Root')
+              else console.log('뭔가 문제가 생김')
             }
           }} 
         />

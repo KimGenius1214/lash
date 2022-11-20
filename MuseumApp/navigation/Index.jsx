@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Icon from 'react-native-vector-icons/Ionicons';
-import LoginAuthContext from '../component/ContextAPI';
+import { RecoilRoot } from 'recoil';
 
 // screen
 import WelcomeScreen from '../view/WelcomeScreen'
@@ -16,9 +16,9 @@ import Main from '../view/Index';
 export default function Index(){
     return (
         <NavigationContainer>
-            <LoginAuthContext>
+            <RecoilRoot>
                 <StackNavi />
-            </LoginAuthContext>
+            </RecoilRoot>
         </NavigationContainer>
     );
 }

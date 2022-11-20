@@ -3,6 +3,8 @@ import { useState, useContext } from 'react';
 import Icon from 'react-native-vector-icons/AntDesign';
 import PublicBtn from '../util/PublicBtn';
 import axios from 'axios';
+import { useRecoilState } from 'recoil';
+import { userState } from '../component';
 
 export function OkToken({name}) {
     return(
@@ -25,11 +27,11 @@ export function NotToken({navigation}) {
 }
 
 export default function Index({navigation}){
-    const [inToken, setToken] = useState(false);
+    const [user, setUser] = useRecoilState(userState)
 
     return(
         <ScrollView style={styled.container}>
-            { inToken === false ? <NotToken navigation={navigation} /> : <OkToken name={inToken}/> }
+            { user === null ? <NotToken navigation={navigation} /> : <OkToken name={user.name}/> }
             <View style={styled.searchBoard}>
                 <Icon name="search1" size={25} color="black" style={{alignSelf:'center'}} />
                 <TextInput placeholder='행사정보/커뮤니티/매장/혜택·이벤트/커머스/온라인 전시관' style={styled.placeHolderStyle} />
