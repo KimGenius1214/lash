@@ -2,6 +2,7 @@ import axios from 'axios';
 import { v4 } from 'uuid';
 
 export default async function Join(authCheck){
+    const localhost = await axios.get('https://api.ipify.org/?format=json').then(res => res.data).then(data => data.ip)
 
     const { userId, userPw, name, phone } = authCheck;
 
@@ -16,9 +17,9 @@ export default async function Join(authCheck){
         name : name,
         hp : phone
     }
-
+    
     try {
-        const isJoin = await axios.post('http://61.72.60.239:8080/user/', data ,{    //본인 IP 주소 넣으십쇼
+        const isJoin = await axios.post(`http://${localhost}:8080/user/`, data ,{
             header: {
                 'Content-Type':'application/json'
             }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, TextInput, Text, StyleSheet } from 'react-native';
 import PublicBtn from '../../util/PublicBtn';
 import { AuthLogin } from "../../util/Auth";
@@ -20,6 +20,10 @@ export default function LoginForm({navigation}) {
       [name] : e
     })
   };
+
+  useEffect( () => {
+    if(user != null) navigation.navigate('Root')
+  }, [user])
 
   return (
     <View style={styles.container}>
@@ -44,13 +48,11 @@ export default function LoginForm({navigation}) {
       </View>
       <View style={styles.btnBox}>
         <PublicBtn title="Login" 
-          onPress={() => {
+          onPress={ () => {
             const result = AuthLogin(authCheck.userId, authCheck.userPw);
             if(result != null) setMsg(result)
             else if(result == null) {
               Login(authCheck).then(res => setUser(res));
-              if(user.userId === authCheck.userId) navigation.navigate('Root')
-              else console.log('뭔가 문제가 생김')
             }
           }} 
         />

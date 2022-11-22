@@ -1,12 +1,14 @@
 import axios from 'axios';
 
 export default async function Login(authCheck){
+    const localhost = await axios.get('https://api.ipify.org/?format=json').then(res => res.data).then(data => data.ip)
+
     const { userId, userPw } = authCheck;
 
     const data = { userId: userId, userPw: userPw }
 
     try {
-        const res = await axios.post('http://222.120.225.118:8080/user/login', data,{ 
+        const res = await axios.post(`http://${localhost}:8080/user/login`, data,{ 
             header: {
                 'Content-Type':'application/json'
             }
