@@ -1,30 +1,8 @@
 import { Text, View, ScrollView, StyleSheet, TextInput, Image } from 'react-native';
-import { useState, useContext } from 'react';
 import Icon from 'react-native-vector-icons/AntDesign';
-import PublicBtn from '../util/PublicBtn';
-import axios from 'axios';
 import { useRecoilState } from 'recoil';
 import { userState } from '../component';
-
-export function OkToken({name}) {
-    return(
-        <View style={styled.topBoard}>
-            <Text>{name}님 반가워요</Text>
-            <Text>이미지 넣는곳</Text>
-        </View>
-    )
-}
-
-export function NotToken({navigation}) {
-    return(
-        <View style={styled.topBoard}>
-            <Text style={{textAlignVertical: 'center'}} onPress={() => navigation.navigate('JoinForm')}>회원 가입을 하시겠어요?</Text>
-            <View style={{width: '20%'}}>
-                <PublicBtn title="로그인" onPress={() => navigation.navigate('LoginForm')} />
-            </View>
-        </View>
-    )
-}
+import { NotToken, OkToken } from './login/LoginWhether';
 
 export default function Index({navigation}){
     const [user, setUser] = useRecoilState(userState)
@@ -76,12 +54,6 @@ const styled = StyleSheet.create({
         flex: 1,
         width: '100%',
         height: '100%',
-    },
-    topBoard:{
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingHorizontal: '5%',
-        paddingVertical: '2%'
     },
     searchBoard: {
         flexDirection: 'row',
