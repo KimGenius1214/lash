@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { RecoilRoot } from 'recoil';
 
 // screen
-import WelcomeScreen from '../view/WelcomeScreen'
+import Profile from '../view/profile/profile'
 import LoginForm from '../view/login/LoginForm';
 import JoinForm from '../view/join/JoinForm';
 import JoinComp from '../view/join/JoinComp';
@@ -61,18 +61,18 @@ function BottomNavi() {
                 })}
             >
                 <Tab.Screen
-                name="home"
-                component={Main}
-                options={{
-                    tabBarLabel: '홈',
-                }}
+                    name="home"
+                    component={Main}
+                    options={{
+                        tabBarLabel: '홈',
+                    }}
                 />
                 <Tab.Screen
-                name="profile"
-                component={WelcomeScreen}
-                options={{
-                    tabBarLabel: '웰컴스크린',
-                }}
+                    name="profile"
+                    component={Profile}
+                    options={{
+                        tabBarLabel: '내정보',
+                    }}
                 />
             </Tab.Navigator>
     )
