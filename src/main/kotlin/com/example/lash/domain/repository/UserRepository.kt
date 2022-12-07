@@ -1,6 +1,7 @@
 package com.example.lash.domain.repository
 
 import com.example.lash.domain.entity.User
+import com.vitasoft.annotation.domain.model.dto.UserDto
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.JpaRepository
@@ -15,4 +16,6 @@ interface UserRepository : JpaRepository<User, String> {
     fun deleteByIdx(idx: String)
     @Nullable
     fun findByUserId(userId: String?): User
+
+    fun findByUserIdAndUserPw(userId: String?, userPw: String?) : UserDto
 }
