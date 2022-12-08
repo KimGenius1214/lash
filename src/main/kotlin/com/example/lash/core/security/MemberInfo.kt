@@ -1,11 +1,8 @@
-package com.example.lash.core.security;
+package com.example.lash.core.security
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.Retention
+import java.lang.annotation.RetentionPolicy
 
-@Target(value = {ElementType.PARAMETER, ElementType.TYPE_PARAMETER})
+@Target(AnnotationTarget.VALUE_PARAMETER, AnnotationTarget.TYPE_PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface MemberInfo {
-}
+annotation class MemberInfo 

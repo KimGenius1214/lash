@@ -5,6 +5,4 @@ import lombok.Data
 
 @Data
 @AllArgsConstructor
-class UserSignInResponse(accessToken: String) {
-    private val accessToken: String? = null
-}
+class UserSignInResponse(val accessToken: String)

@@ -1,3 +1,11 @@
+server:
+  port: 8083
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
 spring:
   datasource:
     driver-class-name: oracle.jdbc.OracleDriver
@@ -9,5 +17,9 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
-
-
+  mvc:
+    path-match:
+      matching-strategy: ant_path_matcher
+app:
+  jwtSecret: abcdefsfsdaofisdjofiasjdfiopsjofisdfsdafsdaasfsafsfsafsafd
+  jwtExpirationMs: 864000

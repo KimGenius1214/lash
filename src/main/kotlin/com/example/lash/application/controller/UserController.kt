@@ -21,32 +21,32 @@ class UserController(
 
     @GetMapping("/{idx}")
     @ResponseStatus(HttpStatus.OK)
-    fun getUser(@PathVariable idx: String?): GetUserDto{
+    fun getUser(@PathVariable idx: String): GetUserDto {
         val getUserDto = userService.getUser(idx)
         return getUserDto
     }
 
-    @PostMapping("/")
+    @PostMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun createUser(
-        @RequestBody @Validated createUserRequest: CreateUserRequest
-    ){
-        return userService.createUser(createUserRequest)
+        @RequestBody @Validated request: CreateUserRequest
+    ) {
+        return userService.createUser(request)
     }
 
-    @PutMapping("/")
+    @PutMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun updateUser(
-        @RequestBody @Validated updateUserRequest: UpdateUserRequest
-    ){
-        return userService.updateUser(updateUserRequest)
+        @RequestBody @Validated request: UpdateUserRequest
+    ) {
+        return userService.updateUser(request)
     }
 
     @DeleteMapping("/{idx}")
 //    @ResponseStatus(HttpStatus.NO_CONTENT)
     fun delete(
         @PathVariable idx: String
-    ){
+    ) {
         return userService.deleteUser(idx)
     }
 
@@ -59,7 +59,7 @@ class UserController(
     }
 
     @DeleteMapping("/all")
-    fun deleteAllUsers(){
+    fun deleteAllUsers() {
         return userService.deleteAllUser()
     }
 
@@ -68,12 +68,12 @@ class UserController(
     fun loginAccess(
         @RequestBody @Validated loginUserRequest: LoginUserRequest
     ): GetUserDto {
-        val userId: String? = loginUserRequest.userId
-        val userPw: String? = loginUserRequest.userPw
+        val userId = loginUserRequest.userId
+        val userPw = loginUserRequest.userPw
 
         val getUserDto = userService.getUserLogin(userId)
-        if (!StringUtils.isEmpty(userPw)) {
-            if (userPw.equals(getUserDto.userPw)) {
+        if (userPw.isNotEmpty()) {
+            if (userPw == getUserDto.userPw) {
                 return getUserDto
             }
         }

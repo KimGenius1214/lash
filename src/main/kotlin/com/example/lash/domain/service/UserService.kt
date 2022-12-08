@@ -11,19 +11,14 @@ import org.springframework.transaction.annotation.Transactional
 class UserService(
     private val userRepository: UserRepository
 ) {
-
     fun createUser(createUserRequest: CreateUserRequest) {
         val user = createUserRequest.toUser()
         userRepository.save(user)
     }
 
-    fun getUser(idx: String?): GetUserDto {
-        return GetUserDto(userRepository.findByIdx(idx))
-    }
+    fun getUser(idx: String) = GetUserDto(userRepository.findByIdx(idx))
 
-    fun getUserLogin(userId: String?): GetUserDto {
-        return GetUserDto(userRepository.findByUserId(userId))
-    }
+    fun getUserLogin(userId: String) = GetUserDto(userRepository.findByUserId(userId))
 
     @Transactional
     fun updateUser(updateUserRequest: UpdateUserRequest) {
@@ -33,17 +28,12 @@ class UserService(
 
     @Transactional
     fun deleteUser(idx: String) {
-//        userRepository.findAll().map {
-//            userRepository.delete(it)
-//        }
-    return userRepository.deleteByIdx(idx)
+        return userRepository.deleteByIdx(idx)
     }
 
     @Transactional
     fun deleteAllUser() {
-        userRepository.findAll().map {
-            userRepository.delete(it)
-        }
+        userRepository.deleteAll(userRepository.findAll())
     }
 
     fun getUsers(): List<GetUserDto> {
