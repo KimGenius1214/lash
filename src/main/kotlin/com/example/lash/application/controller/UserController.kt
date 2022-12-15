@@ -8,12 +8,11 @@ import com.example.lash.domain.dto.GetUserDto
 import com.example.lash.domain.service.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
-import org.springframework.util.StringUtils
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 class UserController(
     @Autowired
     private var userService: UserService
@@ -31,7 +30,7 @@ class UserController(
     fun createUser(
         @RequestBody @Validated request: CreateUserRequest
     ) {
-        return userService.createUser(request)
+        userService.createUser(request)
     }
 
     @PutMapping
@@ -50,7 +49,7 @@ class UserController(
         return userService.deleteUser(idx)
     }
 
-    @GetMapping("/")
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
     fun getUsers(
     ): GetUsersResponse {
@@ -58,26 +57,16 @@ class UserController(
         return GetUsersResponse(users)
     }
 
-    @DeleteMapping("/all")
-    fun deleteAllUsers() {
-        return userService.deleteAllUser()
-    }
+    @DeleteMapping
+    fun deleteAllUsers() =
+        userService.deleteAllUsers()
 
     @PostMapping("/login")
     @ResponseStatus(HttpStatus.OK)
     fun loginAccess(
-        @RequestBody @Validated loginUserRequest: LoginUserRequest
+        @RequestBody @Validated request: LoginUserRequest
     ): GetUserDto {
-        val userId = loginUserRequest.userId
-        val userPw = loginUserRequest.userPw
-
-        val getUserDto = userService.getUserLogin(userId)
-        if (userPw.isNotEmpty()) {
-            if (userPw == getUserDto.userPw) {
-                return getUserDto
-            }
-        }
-        return getUserDto
+        return userService.getUserLogin(request.userId, request.userPw)
     }
 }
 

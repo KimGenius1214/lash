@@ -3,6 +3,8 @@ package com.example.lash.domain.service
 import com.example.lash.application.request.CreateUserRequest
 import com.example.lash.application.request.UpdateUserRequest
 import com.example.lash.domain.dto.GetUserDto
+import com.example.lash.domain.entity.User
+import com.example.lash.domain.projection.GetUserProjection
 import com.example.lash.domain.repository.UserRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -11,14 +13,19 @@ import org.springframework.transaction.annotation.Transactional
 class UserService(
     private val userRepository: UserRepository
 ) {
-    fun createUser(createUserRequest: CreateUserRequest) {
+    fun createUser(createUserRequest: CreateUserRequest): User {
         val user = createUserRequest.toUser()
-        userRepository.save(user)
+        return userRepository.save(user)
     }
 
     fun getUser(idx: String) = GetUserDto(userRepository.findByIdx(idx))
 
-    fun getUserLogin(userId: String) = GetUserDto(userRepository.findByUserId(userId))
+    fun getUserLogin(userId: String, userPw: String): GetUserDto {
+        val user =
+            userRepository.findByUserIdAndUserPw(userId, userPw).orElseThrow { throw RuntimeException("로그인 정보 없음") }
+
+        return GetUserDto(user)
+    }
 
     @Transactional
     fun updateUser(updateUserRequest: UpdateUserRequest) {
@@ -32,12 +39,10 @@ class UserService(
     }
 
     @Transactional
-    fun deleteAllUser() {
+    fun deleteAllUsers() =
         userRepository.deleteAll(userRepository.findAll())
-    }
 
-    fun getUsers(): List<GetUserDto> {
-        return userRepository.findAll().map { GetUserDto(it) }
+    fun getUsers(): List<GetUserProjection> {
+        return userRepository.findAllBy()
     }
-
 }
