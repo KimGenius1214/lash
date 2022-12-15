@@ -14,15 +14,13 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/users")
 class UserController(
-    @Autowired
     private var userService: UserService
 ) {
 
     @GetMapping("/{idx}")
     @ResponseStatus(HttpStatus.OK)
     fun getUser(@PathVariable idx: String): GetUserDto {
-        val getUserDto = userService.getUser(idx)
-        return getUserDto
+        return userService.getUser(idx)
     }
 
     @PostMapping
