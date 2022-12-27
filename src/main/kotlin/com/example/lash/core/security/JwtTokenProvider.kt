@@ -27,7 +27,8 @@ class JwtTokenProvider {
         val now = Date()
         val expireAt = Date(now.time + jwtExpirationMs)
         return Jwts.builder()
-            .claim("userId", userId) //                .claim("role", "ROLE_" + userRole.toString())
+            .claim("userId", userId)
+            // .claim("role", "ROLE_" + userRole.toString())
             .setIssuedAt(now)
             .setExpiration(expireAt)
             .signWith(secretKey, SignatureAlgorithm.HS256)
@@ -58,9 +59,9 @@ class JwtTokenProvider {
 
     private fun getAuthorities(claims: Claims): Collection<GrantedAuthority> {
         val grantedAuthorities: MutableList<GrantedAuthority> = ArrayList()
-        val role = claims.get("role", String::class.java)
-        val simpleGrantedAuthority = SimpleGrantedAuthority(role)
-        grantedAuthorities.add(simpleGrantedAuthority)
+//        val role = claims.get("role", String::class.java)
+//        val simpleGrantedAuthority = SimpleGrantedAuthority(role)
+//        grantedAuthorities.add(simpleGrantedAuthority)
         return grantedAuthorities
     }
 }

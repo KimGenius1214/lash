@@ -13,5 +13,4 @@ interface UserRepository : JpaRepository<User, String> {
     fun findByUserId(userId: String): Optional<User>
     fun existsByUserIdAndUserPw(userId: String, userPw: String): Boolean
     fun findAllBy(): List<GetUserProjection>
-    fun findByUserIdAndUserPw(userId: String, userPw: String): Optional<User>
 }

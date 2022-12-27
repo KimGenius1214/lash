@@ -22,7 +22,11 @@ export default function LoginForm({navigation}) {
   };
 
   useEffect( () => {
-    if(user != null) navigation.navigate('Root')
+    if(user != null) {
+      navigation.navigate('Root')
+    }else{
+      
+    }
   }, [user])
 
   return (
@@ -52,7 +56,7 @@ export default function LoginForm({navigation}) {
             const result = AuthLogin(authCheck.userId, authCheck.userPw);
             if(result != null) setMsg(result)
             else if(result == null) {
-              Login(authCheck).then(res => setUser(res));
+              Login(authCheck).then(res => {setUser(res);});
             }
           }} 
         />

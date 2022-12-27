@@ -59,12 +59,12 @@ class UserController(
     fun deleteAllUsers() =
         userService.deleteAllUsers()
 
-    @PostMapping("/login")
+    @PostMapping("/info")
     @ResponseStatus(HttpStatus.OK)
-    fun loginAccess(
+    fun userinfo(
         @RequestBody @Validated request: LoginUserRequest
     ): GetUserDto {
-        return userService.getUserLogin(request.userId, request.userPw)
+        return userService.getUserLogin(request.userId)
     }
 }
 

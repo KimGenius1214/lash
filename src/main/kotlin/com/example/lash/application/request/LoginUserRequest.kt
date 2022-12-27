@@ -6,8 +6,6 @@ import org.jetbrains.annotations.NotNull
 @Data
 class LoginUserRequest (
     @field:NotNull
-    val userId : String,
-    @field:NotNull
-    val userPw: String,
+    val userId : String
         ){
 }

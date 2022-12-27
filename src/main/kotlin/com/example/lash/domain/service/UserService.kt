@@ -20,10 +20,9 @@ class UserService(
 
     fun getUser(idx: String) = GetUserDto(userRepository.findByIdx(idx))
 
-    fun getUserLogin(userId: String, userPw: String): GetUserDto {
+    fun getUserLogin(userId: String): GetUserDto {
         val user =
-            userRepository.findByUserIdAndUserPw(userId, userPw).orElseThrow { throw RuntimeException("로그인 정보 없음") }
-
+            userRepository.findByUserId(userId).orElseThrow { throw RuntimeException("로그인 정보 없음") }
         return GetUserDto(user)
     }
 
